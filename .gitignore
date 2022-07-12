@@ -1,0 +1,4 @@
+VENV/
+*.DS_Store
+*post.py
+*.vscode
