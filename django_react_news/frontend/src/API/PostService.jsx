@@ -4,9 +4,14 @@ import axios from 'axios';
 export default class PostService {
 
     
-    static async getAll() {
-        const response = await axios.get('http://127.0.0.1:8000/api/v1/news/')
-        return response.data
+    static async getAllNews() {
+        const response = await axios.get('/api/v1/news/')
+        return response.data.results
+    }
+
+    static async newsGetById(id) {
+        const response = await axios.get('/api/v1/news/'+id)
+        return response;
     }
 
 }

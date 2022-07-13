@@ -1,37 +1,29 @@
-import  axios  from 'axios';
-import React, { useState,useEffect } from 'react';
-import PostItem from './components/PostItem';
-import './styles/App.css';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  } from "react-router-dom";
+import Navbar from './components/UI/Navbar/Navbar';
+import About from './pages/About';
+import New from './pages/New';
+import Posts from './pages/Posts';
 
-function App() {
-  const [posts,setPosts] = useState([])
+const App = () => {
+  return (
+    <Router>
+    <div className='app'>
+      <Navbar />
+        <Routes>
 
-  useEffect(() => {
-    getPosts()
+          <Route path= "/" element={<About />}></Route>
+          <Route path="/news/" exact element={<Posts />}></Route>
+          <Route path="/news/:id" element={<New />}></Route>
 
-  }, [])
-
-  const getPosts = async () => {
-    const response = await axios.get('http://127.0.0.1:8000/api/v1/news/')
-    // console.log(response.data.results)
-    setPosts(response.data.results)
-  }
-
-
-    return (
-      <div className='App'>
-
-        <hr style={{margin:'15px 0'}}/>
-        <hr style={{margin:'15px 0'}}/>
-
-        {posts.map((post,index) => 
-                <div key={post.id}> 
-                    <PostItem number={index+1} post={post} key={post.id} />
-                </div>
-                )}
-      </div>  
-
-    );
+        </Routes>
+    </div>
+  </Router>
+  );
 }
 
-export default App;
+export default App
