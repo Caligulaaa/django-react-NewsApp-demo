@@ -1,19 +1,19 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 
-}
-#root {
+} */
+/* #root {
     display: flex;
     justify-content: center;
 
-}
-.App {
-    width: 800px;
+} */
+/* .App {
 
-}
-.post {
+    justify-content: center;
+} */
+/* .post {
     border-radius: 5px;
     display: flex;
     padding: 15px;
@@ -22,7 +22,7 @@
     justify-content: space-between;
     align-items: center;
 
-}
-.post__btn {
+} */
+/* .post__btn {
     display: flex;
-}
+} */

@@ -1,7 +1,8 @@
 import React from 'react'
 import PostItem from './PostItem'
 
-const PostList = ({posts,title,remove}) => {
+
+const PostList = ({posts,title}) => {
 
     if(!posts.length){
         return (
@@ -12,12 +13,13 @@ const PostList = ({posts,title,remove}) => {
     }
 
         return (
-            <div>
-                <h1 style={{textAlign: 'center'}}>{title}</h1>
+
+            <div >
+                {/* <h1 style={{textAlign: 'center'}}>{title}</h1> */}
 
                 {posts.map((post) => 
                 <div key={post.id}> 
-                    <PostItem number={post.id}  remove={remove} post={post} key={post.id} />
+                    <PostItem number={post.id} post={post} key={post.id} />
                 </div>
                 )}
 
