@@ -7,6 +7,7 @@ coreschema==0.0.4
 cryptography==37.0.4
 defusedxml==0.7.1
 Django==4.0.6
+django-cors-headers==3.13.0
 django-templated-mail==1.1.1
 djangorestframework==3.13.1
 djangorestframework-simplejwt==4.8.0
@@ -16,6 +17,7 @@ itypes==1.2.0
 Jinja2==3.1.2
 MarkupSafe==2.1.1
 oauthlib==3.2.0
+psycopg2-binary==2.9.3
 pycparser==2.21
 PyJWT==2.4.0
 python3-openid==3.2.0
