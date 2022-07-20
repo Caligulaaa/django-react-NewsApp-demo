@@ -3,8 +3,15 @@ import { useParams } from 'react-router-dom'
 import PostService from '../API/PostService';
 import PostComment from '../components/PostComment';
 
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import CardActions from '@mui/material/CardActions';
 
-const New = ({match}) => {
+
+const New = () => {
     const newId = useParams();
     const [post,setPost] = useState({})
     const [comments,setComment] = useState([])
@@ -13,15 +20,13 @@ const New = ({match}) => {
         const getPost = await PostService.newsGetById(newId.id)
         setPost(getPost.data)
     }
-    const getComment = async() => {
+    const getComments = async() => {
         const getComments = await PostService.getCommentByIdNews(newId.id) 
         setComment(getComments.data.results)
     }
     const delPost = () => {
-
     }
     const updatePost = () => {
-
     }
     const allComments = useMemo(() => {
         return comments
@@ -29,21 +34,21 @@ const New = ({match}) => {
 
     useEffect(() => {
         getPosts()
-        getComment()
+        getComments()
     }, [])
-    const createComment = (newComment) => {
-        setComment([...comments,newComment])
+    const createComment = (getNewComment) => {
+        setComment([...comments,getNewComment])
     }
     return (
         <div>
-            <hr />
+            <hr style={{margin:'15px 0'}}/>
             <div>            
             <button onClick={updatePost}>update</button>
 
             <button>delete</button>
             </div>
 
-            <hr />
+            <hr style={{margin:'15px 0'}}/>
             <h1>single new {newId.id} </h1>
                 <div>
                     <h3>{post.title}</h3>
@@ -51,18 +56,48 @@ const New = ({match}) => {
                     {post.body}
 
                 </div>
-
-            <div>
+            <div >
                 <br />
-                <hr />
+                <hr style={{margin:'15px 0'}}/>
                 <PostComment create={createComment}/>
-                <hr />
                 <br />
-                {allComments.map((comment) =>
-                    <div key={comment.id}> 
-                        <h1>{comment.comment}</h1>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}>
+                <Box sx={{       
+                    width: 700,
+                    borderColor: 'black',
+                    borderRadius: 2,
+                    boxShadow: 2,
+                    }}>
+                       <h1 style={{textAlign: 'center'}}>Comments</h1>
+                       <hr style={{margin:'15px 0'}}/>
+      {/* <Card variant="outlined">asd</Card> */}
+                
+                {allComments.map((comment,index) =>
+                    <div key={index}> 
+                    <Card sx={{margin: 3}}
+                    variant="outlined" >
+                        <CardContent >
+                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            {comment.user} (id-user)
+                            </Typography>
+                            <br />
+                            <Typography variant="body2">
+                            {comment.comment}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small">delete(not work)</Button>
+                        </CardActions>
+                    </Card>
                     </div>
                 )}
+                <hr style={{margin:'15px 0'}}/>
+                <h1>pagination</h1>
+                </Box>
+                </Box>
             </div>
 
         </div>

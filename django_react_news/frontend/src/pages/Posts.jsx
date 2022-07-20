@@ -50,10 +50,6 @@ const searchPost = (e) =>{
             } 
             <Pagination count={pageTotal} page={page} onChange={changePage}/>
             <MySearch value={filter.query} onChange={searchPost} />
-
-
-            
-
         </Box>
         <hr style={{margin:'15px 0'}}/>
 

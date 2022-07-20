@@ -9,11 +9,11 @@ class News(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return str(self.title)
 
 class Comments(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     news = models.ForeignKey(News,on_delete=models.CASCADE)
     comment = models.TextField()
     def __str__(self):
-        return self.user
+        return str(self.user)
